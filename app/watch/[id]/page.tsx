@@ -10,14 +10,7 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-export async function generateStaticParams() {
-  try {
-    const movies = await getMovies();
-    return movies.slice(0, 20).map((m) => ({ id: String(m.id) }));
-  } catch {
-    return [];
-  }
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: PageProps) {
   const { id } = await params;
